@@ -57,8 +57,9 @@ nav {
 /* ===== SECTIONS ===== */
 section { padding: 5rem 5%; }
 .section-title { text-align: center; font-size: 2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 3rem; }
-.people, .research, .news { background: #f7f8fa; }
+.people, .research { background: #f7f8fa; }
 .alumni, .publications { background: #fff; }
+.news { background: #f7f8fa; }
 
 /* ===== PEOPLE ===== */
 .people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
@@ -108,11 +109,11 @@ section { padding: 5rem 5%; }
 .research-text p { font-size: 0.9rem; color: #555; margin-bottom: 0.8rem; line-height: 1.7; }
 .collab { font-size: 0.82rem !important; color: #777 !important; border-top: 1px solid #eee; padding-top: 0.8rem; margin-top: 0.8rem; }
 
-/* ===== PUBLICATIONS (SCROLLABLE) ===== */
-.pub-scroll-container {
+/* ===== SHARED SCROLL CONTAINER ===== */
+.scroll-container {
     max-width: 850px;
     margin: 0 auto;
-    max-height: 350px;
+    max-height: 400px;
     overflow-y: auto;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -120,24 +121,25 @@ section { padding: 5rem 5%; }
     background: #fafbfc;
 }
 
-.pub-scroll-container::-webkit-scrollbar {
+.scroll-container::-webkit-scrollbar {
     width: 6px;
 }
 
-.pub-scroll-container::-webkit-scrollbar-track {
+.scroll-container::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 3px;
 }
 
-.pub-scroll-container::-webkit-scrollbar-thumb {
+.scroll-container::-webkit-scrollbar-thumb {
     background: #bbb;
     border-radius: 3px;
 }
 
-.pub-scroll-container::-webkit-scrollbar-thumb:hover {
+.scroll-container::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
 
+/* ===== PUBLICATIONS (inside scroll container) ===== */
 .pub-list {
     list-style: none;
     counter-reset: pub-counter;
@@ -172,18 +174,30 @@ section { padding: 5rem 5%; }
 
 .pub-list li:last-child { border-bottom: none; }
 
-/* ===== NEWS ===== */
-.news-grid { max-width: 800px; margin: 0 auto; }
+/* ===== NEWS (inside scroll container) ===== */
+.news-grid { display: flex; flex-direction: column; gap: 0; }
 
 .news-item {
-    background: #fff; padding: 1.8rem; margin-bottom: 1.2rem;
-    border-radius: 6px; border-left: 4px solid #1565c0;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
 }
 
-.news-item time { display: block; font-size: 0.75rem; font-weight: 600; color: #1565c0; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem; }
+.news-item:last-child { border-bottom: none; }
+
+.news-item time {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    background: #1565c0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
 .news-item h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #1a1a2e; }
-.news-item p { font-size: 0.9rem; color: #555; }
+.news-item p { font-size: 0.88rem; color: #555; line-height: 1.6; }
 
 /* ===== CONTACT ===== */
 .contact { background: #1a1a2e; color: #fff; }
@@ -217,5 +231,5 @@ footer { background: #0f0f1a; text-align: center; padding: 1.5rem; color: rgba(2
     .research-item { grid-template-columns: 1fr; }
     .research-img { min-height: 180px; }
     .research-text { padding: 1.5rem; }
-    .pub-scroll-container { max-height: 300px; padding: 1rem 1.2rem; }
+    .scroll-container { max-height: 320px; padding: 1rem 1.2rem; }
 }
