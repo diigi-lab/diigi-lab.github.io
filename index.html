@@ -3,887 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIIGI Lab - Department of Biomedical Engineering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: #1a1a2e;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .nav-brand {
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #64b5f6;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: #fff;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            padding: 6rem 5% 4rem;
-            position: relative;
-        }
-
-        .hero-logo {
-            width: 200px;
-            height: 200px;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero-logo-text {
-            color: #64b5f6;
-            font-family: 'Roboto Slab', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            color: #fff;
-            font-family: 'Roboto Slab', serif;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .subtitle {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 5rem 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 2.2rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title .divider {
-            width: 60px;
-            height: 3px;
-            background: #1565c0;
-            margin: 1rem auto;
-        }
-
-        /* PEOPLE */
-        .people {
-            background: #f5f7fa;
-        }
-
-        .people-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .person-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .person-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .person-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1565c0, #64b5f6);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .person-card h3 {
-            font-size: 1.1rem;
-            color: #1a1a2e;
-            margin-bottom: 0.3rem;
-        }
-
-        .person-card .role {
-            color: #1565c0;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
-        }
-
-        .person-card p {
-            color: #555;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .person-card .affiliations {
-            font-size: 0.8rem;
-            color: #777;
-            margin-bottom: 1rem;
-        }
-
-        .profile-link {
-            display: inline-block;
-            padding: 0.4rem 1.2rem;
-            background: #1565c0;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            transition: background 0.2s;
-        }
-
-        .profile-link:hover {
-            background: #0d47a1;
-        }
-
-        /* ALUMNI */
-        .alumni {
-            background: #fff;
-        }
-
-        .alumni-list {
-            max-width: 800px;
-            margin: 0 auto;
-            list-style: none;
-        }
-
-        .alumni-item {
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .alumni-item:last-child {
-            border-bottom: none;
-        }
-
-        .alumni-item h4 {
-            color: #1a1a2e;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .alumni-item p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* RESEARCH */
-        .research {
-            background: #f5f7fa;
-        }
-
-        .research-item {
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 2.5rem;
-            align-items: start;
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        .research-item:nth-child(even) {
-            direction: rtl;
-        }
-
-        .research-item:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .research-image {
-            width: 100%;
-            height: 100%;
-            min-height: 300px;
-            background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 3rem;
-        }
-
-        .research-content {
-            padding: 2rem;
-        }
-
-        .research-content h3 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.3rem;
-            color: #1a1a2e;
-            margin-bottom: 1rem;
-        }
-
-        .research-content p {
-            color: #555;
-            font-size: 0.92rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .research-content .collaborators {
-            font-size: 0.85rem;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-
-        .research-content .collaborators a {
-            color: #1565c0;
-            text-decoration: none;
-        }
-
-        .research-content .collaborators a:hover {
-            text-decoration: underline;
-        }
-
-        /* PUBLICATIONS */
-        .publications {
-            background: #fff;
-        }
-
-        .pub-list {
-            max-width: 900px;
-            margin: 0 auto;
-            list-style: none;
-        }
-
-        .pub-item {
-            padding: 1.2rem 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.92rem;
-            line-height: 1.6;
-            color: #444;
-        }
-
-        .pub-item a {
-            color: #1565c0;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .pub-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* NEWS */
-        .news {
-            background: #f5f7fa;
-        }
-
-        .news-grid {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .news-item {
-            background: #fff;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 4px solid #1565c0;
-        }
-
-        .news-item .date {
-            color: #1565c0;
-            font-size: 0.8rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-item h3 {
-            font-size: 1.1rem;
-            color: #1a1a2e;
-            margin-bottom: 0.8rem;
-        }
-
-        .news-item p {
-            color: #555;
-            font-size: 0.92rem;
-            line-height: 1.6;
-        }
-
-        .news-item a {
-            color: #1565c0;
-            text-decoration: none;
-        }
-
-        .news-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* CONTACT */
-        .contact {
-            background: #1a1a2e;
-            color: #fff;
-        }
-
-        .contact .section-title h2 {
-            color: #fff;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1rem;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 6px;
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: #64b5f6;
-        }
-
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            padding: 1rem 2rem;
-            background: #1565c0;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .contact-form button:hover {
-            background: #1976d2;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #0f0f1a;
-            text-align: center;
-            padding: 2rem 5%;
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #1a1a2e;
-                flex-direction: column;
-                padding: 1.5rem 5%;
-                gap: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .research-item {
-                grid-template-columns: 1fr;
-            }
-
-            .research-item:nth-child(even) {
-                direction: ltr;
-            }
-
-            .research-image {
-                min-height: 200px;
-            }
-
-            .people-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>DIIGI Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <a href="#home" class="nav-brand">Department of Biomedical Engineering</a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#people">People</a></li>
-            <li><a href="#alumni">Alumni</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+<nav id="navbar">
+    <a href="#home" class="nav-brand">Department of Biomedical Engineering</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#people">People</a></li>
+        <li><a href="#alumni">Alumni</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-logo">
-            <span class="hero-logo-text">DIIGI</span>
-        </div>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-logo">DIIGI</div>
         <h1>DIIGI Lab</h1>
-        <p class="subtitle">Diagnostic & Interventional Imaging Guided Innovation</p>
-    </section>
+        <p>Diagnostic & Interventional Imaging Guided Innovation</p>
+    </div>
+</section>
 
-    <!-- PEOPLE -->
-    <section class="people" id="people">
-        <div class="section-title">
-            <h2>Group Members</h2>
-            <div class="divider"></div>
+<section class="people" id="people">
+    <h2 class="section-title">Group Members</h2>
+    <div class="people-grid">
+        <div class="card">
+            <div class="avatar">YT</div>
+            <h3>Yuankai Kenny Tao</h3>
+            <span class="role">Principal Investigator</span>
+            <p>Assistant Professor of Biomedical Engineering and Ophthalmology and Visual Sciences.</p>
+            <p class="affiliations">Faculty affiliate of <a href="https://www.vumc.org/ophthalmology">VEI</a>, <a href="https://wp0.vanderbilt.edu/vise/">VISE</a>, <a href="https://www.vanderbilt.edu/vbc/">VBC</a>, <a href="https://vuiis.vumc.org/">VUIIS</a>.</p>
+            <a href="https://engineering.vanderbilt.edu/bio/tao-yuankaikenny" class="btn" target="_blank">Profile</a>
         </div>
-        <div class="people-grid">
-            <!-- PI -->
-            <div class="person-card">
-                <div class="person-avatar">YT</div>
-                <h3>Yuankai Kenny Tao</h3>
-                <div class="role">Principal Investigator</div>
-                <p>Assistant Professor of Biomedical Engineering and Ophthalmology and Visual Sciences.</p>
-                <p class="affiliations">Faculty affiliate of <a href="https://www.vumc.org/ophthalmology" target="_blank">VEI</a>, <a href="https://wp0.vanderbilt.edu/vise/" target="_blank">VISE</a>, <a href="https://www.vanderbilt.edu/vbc/" target="_blank">VBC</a>, <a href="https://vuiis.vumc.org/" target="_blank">VUIIS</a>.</p>
-                <a href="https://engineering.vanderbilt.edu/bio/tao-yuankaikenny" class="profile-link" target="_blank">Profile</a>
-            </div>
-            <!-- Jose -->
-            <div class="person-card">
-                <div class="person-avatar">JR</div>
-                <h3>Jose Rico-Jimenez</h3>
-                <div class="role">Research Assistant Professor</div>
-                <p>My research interests include image-processing, feature-extraction, and deep-learning.</p>
-                <a href="https://www.vanderbilt.edu/vise/visepeople/jose-jimenez/" class="profile-link" target="_blank">Profile</a>
-            </div>
-            <!-- Eric -->
-            <div class="person-card">
-                <div class="person-avatar">ET</div>
-                <h3>Eric Tang</h3>
-                <div class="role">Graduate Student</div>
-                <p>My research interests include intraoperative optical coherence tomography and ophthalmic surgical guidance.</p>
-                <a href="https://wp0.vanderbilt.edu/vise/visepeople/eric-tang/" class="profile-link" target="_blank">Profile</a>
-            </div>
-            <!-- Rachel -->
-            <div class="person-card">
-                <div class="person-avatar">RH</div>
-                <h3>Rachel Hecht</h3>
-                <div class="role">Graduate Student</div>
-                <p>My research interests include optical hardware design and translation for image-guided ophthalmic surgery.</p>
-                <a href="https://www.vanderbilt.edu/vise/visepeople/rachel-hecht/" class="profile-link" target="_blank">Profile</a>
-            </div>
-            <!-- Jake -->
-            <div class="person-card">
-                <div class="person-avatar">JW</div>
-                <h3>Jake Watson</h3>
-                <div class="role">Graduate Student</div>
-                <p>My research interests include intraoperative and diagnostic ophthalmic imaging using OCT, optical instrumentation, and optical design.</p>
-                <a href="https://www.vanderbilt.edu/vise/visepeople/jacob-watson/" class="profile-link" target="_blank">Profile</a>
-            </div>
+        <div class="card">
+            <div class="avatar">JR</div>
+            <h3>Jose Rico-Jimenez</h3>
+            <span class="role">Research Assistant Professor</span>
+            <p>My research interests include image-processing, feature-extraction, and deep-learning.</p>
+            <a href="https://www.vanderbilt.edu/vise/visepeople/jose-jimenez/" class="btn" target="_blank">Profile</a>
         </div>
-    </section>
-
-    <!-- ALUMNI -->
-    <section class="alumni" id="alumni">
-        <div class="section-title">
-            <h2>Alumni</h2>
-            <div class="divider"></div>
+        <div class="card">
+            <div class="avatar">ET</div>
+            <h3>Eric Tang</h3>
+            <span class="role">Graduate Student</span>
+            <p>My research interests include intraoperative optical coherence tomography and ophthalmic surgical guidance.</p>
+            <a href="https://wp0.vanderbilt.edu/vise/visepeople/eric-tang/" class="btn" target="_blank">Profile</a>
         </div>
-        <ul class="alumni-list">
-            <li class="alumni-item">
-                <h4>Mohamed Tarek El-Haddad, Ph.D.</h4>
-                <p>Research Scientist, Facebook Reality Labs</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Ivan Bozic, M.S.</h4>
-                <p>Ph.D. Candidate, Department of Biomedical Engineering, Tulane University</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Kelsey Leeburg</h4>
-                <p>Lockheed Martin</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Xiaoyue Li</h4>
-                <p>NSF Graduate Research Fellow, Department of Biomedical Engineering, Columbia University</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Benjamin Terrones</h4>
-                <p>Cook Medical</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Oscar Benavides</h4>
-                <p>Graduate Student, Department of Biomedical Engineering, Texas A&M University</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Amber Arquitola</h4>
-                <p>Graduate Student, Department of Electrical and Computer Engineering, The Ohio State University</p>
-            </li>
-            <li class="alumni-item">
-                <h4>Jianwei Li</h4>
-                <p>Graduate Student, Department of Biomedical Engineering, Duke University</p>
-            </li>
-        </ul>
-    </section>
-
-    <!-- RESEARCH -->
-    <section class="research" id="research">
-        <div class="section-title">
-            <h2>Research</h2>
-            <div class="divider"></div>
+        <div class="card">
+            <div class="avatar">RH</div>
+            <h3>Rachel Hecht</h3>
+            <span class="role">Graduate Student</span>
+            <p>My research interests include optical hardware design and translation for image-guided ophthalmic surgery.</p>
+            <a href="https://www.vanderbilt.edu/vise/visepeople/rachel-hecht/" class="btn" target="_blank">Profile</a>
         </div>
-
-        <!-- Research 1 -->
-        <div class="research-item">
-            <div class="research-image">🔬</div>
-            <div class="research-content">
-                <h3>Multimodality ophthalmic imaging technologies</h3>
-                <p>Non-invasive biological imaging is crucial for understanding in vivo structure and function. Optical coherence tomography (OCT) and reflectance confocal microscopy are two of the most widely used optical modalities for exogenous contrast-free high-resolution three-dimensional imaging in non-fluorescent scattering tissues. However, sample motion remains a critical barrier to raster-scanned acquisition and reconstruction of wide-field anatomically accurate volumetric datasets.</p>
-                <p>We introduce spectrally encoded coherence tomography and reflectometry (SECTR), a high-speed multimodality system for simultaneous OCT and spectrally-encoded reflectance (SER) imaging. SECTR utilizes a robust system design consisting of shared optical relays, scanning mirrors, swept-laser, and digitizer to achieve the fastest reported in vivo multimodal imaging rate of 2 gigapixels-per-second.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd" target="_blank">Karen Joos, M.D., Ph.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0" target="_blank">Shriji Patel, M.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/anthony-b-daniels-md" target="_blank">Anthony Daniels, M.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/irina-de-la-huerta-md-phd" target="_blank">Irina De la Huerta, M.D., Ph.D.</a>
-                </div>
-            </div>
+        <div class="card">
+            <div class="avatar">JW</div>
+            <h3>Jake Watson</h3>
+            <span class="role">Graduate Student</span>
+            <p>My research interests include intraoperative and diagnostic ophthalmic imaging using OCT, optical instrumentation, and optical design.</p>
+            <a href="https://www.vanderbilt.edu/vise/visepeople/jacob-watson/" class="btn" target="_blank">Profile</a>
         </div>
+    </div>
+</section>
 
-        <!-- Research 2 -->
-        <div class="research-item">
-            <div class="research-image">👁️</div>
-            <div class="research-content">
-                <h3>Intraoperative imaging for ophthalmic surgical guidance</h3>
-                <p>Translation of optical coherence tomography (OCT) technologies for intraoperative visualization enables in vivo micron-resolution imaging of subsurface tissue structures and image-guided clinical decision-making. Over the last decade, intraoperative OCT has evolved from two-dimensional imaging using handheld probes to include stereomicroscope integrated systems that provide real-time three- and four-dimensional visualization of surgical maneuvers.</p>
-                <p>We have developed multimodal spectrally encoded coherence tomography and reflectometry (SECTR) technologies that allow for simultaneous and intrinsically co-registered en face spectrally encoded reflectance (SER) and cross-sectional OCT imaging. We also recently demonstrated an intraoperative SECTR (iSECTR) microscope-integrated scan-head and ex vivo and in vivo video-rate volumetric (4D) imaging at 18 volumes-per-second.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd" target="_blank">Karen Joos, M.D., Ph.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0" target="_blank">Shriji Patel, M.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/facilities/person/christine-shieh-md" target="_blank">Christine Shieh, M.D.</a>
-                </div>
-            </div>
+<section class="alumni" id="alumni">
+    <h2 class="section-title">Alumni</h2>
+    <ul class="alumni-list">
+        <li><strong>Mohamed Tarek El-Haddad, Ph.D.</strong><span>Research Scientist, Facebook Reality Labs</span></li>
+        <li><strong>Ivan Bozic, M.S.</strong><span>Ph.D. Candidate, Dept. of Biomedical Engineering, Tulane University</span></li>
+        <li><strong>Kelsey Leeburg</strong><span>Lockheed Martin</span></li>
+        <li><strong>Xiaoyue Li</strong><span>NSF Graduate Research Fellow, Dept. of Biomedical Engineering, Columbia University</span></li>
+        <li><strong>Benjamin Terrones</strong><span>Cook Medical</span></li>
+        <li><strong>Oscar Benavides</strong><span>Graduate Student, Dept. of Biomedical Engineering, Texas A&M University</span></li>
+        <li><strong>Amber Arquitola</strong><span>Graduate Student, Dept. of ECE, The Ohio State University</span></li>
+        <li><strong>Jianwei Li</strong><span>Graduate Student, Dept. of Biomedical Engineering, Duke University</span></li>
+    </ul>
+</section>
+
+<section class="research" id="research">
+    <h2 class="section-title">Research</h2>
+
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Multimodality ophthalmic imaging technologies</h3>
+            <p>We introduce spectrally encoded coherence tomography and reflectometry (SECTR), a high-speed multimodality system for simultaneous OCT and spectrally-encoded reflectance (SER) imaging. SECTR utilizes a robust system design consisting of shared optical relays, scanning mirrors, swept-laser, and digitizer to achieve the fastest reported in vivo multimodal imaging rate of 2 gigapixels-per-second.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd">Karen Joos, M.D., Ph.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0">Shriji Patel, M.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/anthony-b-daniels-md">Anthony Daniels, M.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/irina-de-la-huerta-md-phd">Irina De la Huerta, M.D., Ph.D.</a></p>
         </div>
+    </article>
 
-        <!-- Research 3 -->
-        <div class="research-item">
-            <div class="research-image">🤖</div>
-            <div class="research-content">
-                <h3>Machine-learning assisted imaging of surgical dynamics</h3>
-                <p>Intraoperative optical coherence tomography (iOCT) enables volumetric imaging of surgical maneuvers. However, the lack of automated instrument-tracking remains a critical barrier to real-time surgical feedback and iOCT-guided surgery.</p>
-                <p>We previously presented spectrally-encoded coherence tomography and reflectometry (SECTR), which provides simultaneous imaging of spatiotemporally co-registered orthogonal imaging planes at several gigapixels-per-second. Here, we demonstrate automated surgical instrument-tracking and adaptive-sampling of OCT using a combination of deep-learning and SECTR.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd" target="_blank">Karen Joos, M.D., Ph.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0" target="_blank">Shriji Patel, M.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/facilities/person/christine-shieh-md" target="_blank">Christine Shieh, M.D.</a>
-                </div>
-            </div>
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Intraoperative imaging for ophthalmic surgical guidance</h3>
+            <p>We have developed multimodal spectrally encoded coherence tomography and reflectometry (SECTR) technologies that allow for simultaneous and intrinsically co-registered en face spectrally encoded reflectance (SER) and cross-sectional OCT imaging. We also recently demonstrated an intraoperative SECTR (iSECTR) microscope-integrated scan-head and ex vivo and in vivo video-rate volumetric (4D) imaging at 18 volumes-per-second.</p>
+            <p>We are actively working to develop novel technologies, feedback mechanisms, and maneuvers that integrate volumetric iSECTR data for image-guided ophthalmic surgery.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd">Karen Joos, M.D., Ph.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0">Shriji Patel, M.D.</a>, <a href="https://www.vumc.org/ophthalmology/facilities/person/christine-shieh-md">Christine Shieh, M.D.</a></p>
         </div>
+    </article>
 
-        <!-- Research 4 -->
-        <div class="research-item">
-            <div class="research-image">📱</div>
-            <div class="research-content">
-                <h3>Point-of-care ophthalmic diagnostic imaging</h3>
-                <p>Optical coherence tomography (OCT) is the gold standard for quantitative ophthalmic imaging. The majority of commercial and research systems require patients to fixate and be imaged in a seated upright position, which limits the ability to perform ophthalmic imaging in bedridden or pediatric patients.</p>
-                <p>Handheld OCT devices overcome this limitation, but image quality often suffers due to a lack of real-time aiming and patient eye and photographer motion. Here, we describe a handheld spectrally encoded coherence tomography and reflectometry (SECTR) system that enables simultaneous en face reflectance and cross-sectional OCT imaging with a compact optomechanical design.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://engineering.vanderbilt.edu/bio/ipek-oguz" target="_blank">Ipek Oguz, Ph.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/anthony-b-daniels-md" target="_blank">Anthony Daniels, M.D.</a>,
-                    <a href="https://www.vumc.org/ophthalmology/person/irina-de-la-huerta-md-phd" target="_blank">Irina De la Huerta, M.D., Ph.D.</a>
-                </div>
-            </div>
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Machine-learning assisted imaging of surgical dynamics</h3>
+            <p>We previously presented spectrally-encoded coherence tomography and reflectometry (SECTR), which provides simultaneous imaging of spatiotemporally co-registered orthogonal imaging planes at several gigapixels-per-second. Here, we demonstrate automated surgical instrument-tracking and adaptive-sampling of OCT using a combination of deep-learning and SECTR. We believe this method overcomes critical barriers to clinical translation of iOCT and offers several computational and system advantages over previous approaches.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://www.vumc.org/ophthalmology/person/karen-m-joos-md-phd">Karen Joos, M.D., Ph.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/shriji-patel-md-0">Shriji Patel, M.D.</a>, <a href="https://www.vumc.org/ophthalmology/facilities/person/christine-shieh-md">Christine Shieh, M.D.</a></p>
         </div>
+    </article>
 
-        <!-- Research 5 -->
-        <div class="research-item">
-            <div class="research-image">🐭</div>
-            <div class="research-content">
-                <h3>Structural and functional imaging in rodent models of ophthalmic injury and repair</h3>
-                <p>Rodent models are robust tools for understanding human retinal disease and function because of their similarities with human physiology and anatomy and availability of genetic mutants. Optical coherence tomography (OCT) has been well-established for ophthalmic imaging in rodents and enables depth-resolved visualization of structures and image-based surrogate biomarkers of disease.</p>
-                <p>Similarly, fluorescence confocal scanning laser ophthalmoscopy (cSLO) has demonstrated utility for imaging endogenous and exogenous fluorescence and scattering contrast in the mouse retina.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://medschool.vanderbilt.edu/cdb/person/edward-m-levine/" target="_blank">Edward Levine, Ph.D.</a>
-                </div>
-            </div>
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Point-of-care ophthalmic diagnostic imaging</h3>
+            <p>Handheld OCT devices overcome limitations of seated imaging, but image quality often suffers due to a lack of real-time aiming and patient eye and photographer motion. Here, we describe a handheld spectrally encoded coherence tomography and reflectometry (SECTR) system that enables simultaneous en face reflectance and cross-sectional OCT imaging with a compact optomechanical design.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://engineering.vanderbilt.edu/bio/ipek-oguz">Ipek Oguz, Ph.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/anthony-b-daniels-md">Anthony Daniels, M.D.</a>, <a href="https://www.vumc.org/ophthalmology/person/irina-de-la-huerta-md-phd">Irina De la Huerta, M.D., Ph.D.</a></p>
         </div>
+    </article>
 
-        <!-- Research 6 -->
-        <div class="research-item">
-            <div class="research-image">🫁</div>
-            <div class="research-content">
-                <h3>Quantitative vascular imaging</h3>
-                <p>Quantitative measurements of lung microvessels would benefit characterization of vascular function and remodeling in pulmonary vascular diseases. Here, we present a novel method for quantitative measurements of lung vasculature using multi-volumetric optical coherence microscopy (OCM).</p>
-                <p>Murine lungs were perfused with scattering contrast, fixed, and optically cleared. OCM volumes were acquired and segmented in post-processing to quantify vessel diameters. This proof-of-concept demonstrates the utility of our OCM and tissue preparation approach, which can be extended to compare microvasculature changes in entire lung lobes in animal models of pulmonary disease.</p>
-                <div class="collaborators">
-                    <strong>Collaborators:</strong>
-                    <a href="https://medicine.mc.vanderbilt.edu/allergy-pulmonary-faculty-susan-majka-phd" target="_blank">Susan Majka, Ph.D.</a>
-                </div>
-            </div>
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Structural and functional imaging in rodent models of ophthalmic injury and repair</h3>
+            <p>Rodent models are robust tools for understanding human retinal disease and function because of their similarities with human physiology and anatomy and availability of genetic mutants. OCT has been well-established for ophthalmic imaging in rodents and enables depth-resolved visualization of structures and image-based surrogate biomarkers of disease.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://medschool.vanderbilt.edu/cdb/person/edward-m-levine/">Edward Levine, Ph.D.</a></p>
         </div>
-    </section>
+    </article>
 
-    <!-- PUBLICATIONS -->
-    <section class="publications" id="publications">
-        <div class="section-title">
-            <h2>Recent Publications</h2>
-            <div class="divider"></div>
+    <article class="research-item">
+        <div class="research-img"></div>
+        <div class="research-text">
+            <h3>Quantitative vascular imaging</h3>
+            <p>We present a novel method for quantitative measurements of lung vasculature using multi-volumetric optical coherence microscopy (OCM). Murine lungs were perfused with scattering contrast, fixed, and optically cleared. OCM volumes were acquired and segmented in post-processing to quantify vessel diameters.</p>
+            <p class="collab"><strong>Collaborators:</strong> <a href="https://medicine.mc.vanderbilt.edu/allergy-pulmonary-faculty-susan-majka-phd">Susan Majka, Ph.D.</a></p>
         </div>
-        <ul class="pub-list">
-            <li class="pub-item">
-                Tang, E. M., El-Haddad, M. T., Patel, S. N. and Tao, Y. K., "Automated instrument-tracking for 4D video-rate imaging of ophthalmic surgical maneuvers," <em>Biomedical Optics Express</em> (2022).
-                <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-13-3-1471&id=469501" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Rico-Jimenez, J. J., Hu, D., Tang, E. M., Oguz, I. and Tao, Y. K., "Real-time OCT image denoising using a self-fusion neural network," <em>Biomedical Optics Express</em> (2022).
-                <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-13-3-1398&id=469423" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Tang, E. M. and Tao, Y. K., "Modeling and optimization of galvanometric point-scanning temporal dynamics," <em>Biomedical Optics Express</em> (2021).
-                <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-12-11-6701&id=460181" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                El-Haddad, M. T. and Tao, Y. K., "Non-contact characterization of compound optical elements using reflectance confocal microscopy, low-coherence interferometry, and computational ray-tracing," <em>Scientific Reports</em> (2019).
-                <a href="https://www.nature.com/articles/s41598-019-53369-x" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Malone, J. D., El-Haddad, M. T., Yerramreddy, S. S., Oguz, I., and Tao, Y. K., "Handheld spectrally encoded coherence tomography and reflectometry for motion-corrected ophthalmic optical coherence tomography and optical coherence tomography angiography," <em>Neurophotonics</em> (2019).
-                <a href="https://www.spiedigitallibrary.org/journals/neurophotonics/volume-6/issue-04/041102/Handheld-spectrally-encoded-coherence-tomography-and-reflectometry-for-motion-corrected/10.1117/1.NPh.6.4.041102.full?SSO=1" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Daniels, A. B., Froehler, M. T., Nunnally A. H., Pierce, J. M., Bozic, I., Stone, C. A., Santapuram, P. R., Tao, Y. K., Boyd, K. L., Himmel, L. E., Chen, S., Du, L., Friedman, D. L., and Richmond, A., "Rabbit model of intra-arterial chemotherapy toxicity demonstrates retinopathy and vasculopathy related to drug and dose, not procedure or approach," <em>IOVS</em> (2019).
-                <a href="https://iovs.arvojournals.org/article.aspx?articleid=2728304" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Lapierre-Landry, M., Connor, T. B., Carroll, J., Tao, Y. K., and Skala, M. C., "Photothermal optical coherence tomography of indocyanine green in ex vivo eyes," <em>Optics Letters</em> (2018).
-                <a href="https://www.osapublishing.org/ol/abstract.cfm?uri=ol-43-11-2470" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                Bozic, I., Li, X., and Tao, Y. K., "Quantitative biometry of zebrafish retinal vasculature using optical coherence tomographic angiography," <em>Biomedical Optics Express</em> (2018).
-                <a href="https://www.osapublishing.org/boe/abstract.cfm?uri=boe-9-3-1244" target="_blank">[Link]</a>
-            </li>
-            <li class="pub-item">
-                El-Haddad, M. T., Bozic, I., and Tao, Y. K., "Spectrally Encoded Coherence Tomography and Reflectometry (SECTR): simultaneous en face and cross-sectional imaging at 2 gigapixels-per-second," <em>J Biophotonics</em> (2017).
-                <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jbio.201700268" target="_blank">[Link]</a>
-            </li>
-        </ul>
-    </section>
+    </article>
+</section>
 
-    <!-- NEWS -->
-    <section class="news" id="news">
-        <div class="section-title">
-            <h2>News</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="news-grid">
-            <div class="news-item">
-                <div class="date">January 24, 2022</div>
-                <h3>DIIGI Lab present research at SPIE Photonics West</h3>
-                <p>Jose and Eric presented their research at the SPIE Photonics West conference in San Francisco, CA. Congrats Jose and Eric!</p>
-            </div>
-            <div class="news-item">
-                <div class="date">September 27, 2021</div>
-                <h3>DIIGI Lab publishes work on optimization of galvanometric point-scanning temporal dynamics</h3>
-                <p>Graduate student Eric Tang publishes his work on modeling and optimization of galvanometric point-scanning temporal dynamics in Biomedical Optics Express. Hardware and software optimizations are presented for improving optical point-scanning response times that can more than halve the settling time, which can directly improve imaging speed/field-of-views. Congrats Eric! <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-12-11-6701&id=460181" target="_blank">[Link]</a></p>
-            </div>
-            <div class="news-item">
-                <div class="date">August 16, 2021</div>
-                <h3>Incoming graduate student joins DIIGI Lab</h3>
-                <p>Rachel Hecht graduated the University of Colorado Boulder in 2021 with a B.S. in Electrical Engineering and B.M. in Bassoon Performance and will be starting as a first-year graduate student in the Department of Biomedical Engineering. Welcome Rachel! <a href="https://www.vanderbilt.edu/vise/visepeople/rachel-hecht/" target="_blank">[Link]</a></p>
-            </div>
-            <div class="news-item">
-                <div class="date">June 22, 2021</div>
-                <h3>Dr. Tao receives endowed SPIE Faculty Fellowship</h3>
-                <p><a href="http://www.spie.org/" target="_blank">SPIE</a>, the international society for optics and photonics, and Vanderbilt University announced the establishment of the SPIE Faculty Fellowship in Optics and Photonics. <a href="https://engineering.vanderbilt.edu/bio/tao-yuankaikenny" target="_blank">Prof. Kenny Tao</a> has been selected as the recipient of the first gift. <a href="https://spie.org/news/spie-and-vanderbilt-university-announce-1-million-optical-engineering-faculty-fellowship?SSO=1" target="_blank">[Link]</a></p>
-            </div>
-            <div class="news-item">
-                <div class="date">June 10, 2021</div>
-                <h3>Incoming graduate student joins DIIGI Lab</h3>
-                <p>Jake Watson graduated the University of Evansville in 2021 with a B.S. in Electrical Engineering and will be starting as a first-year graduate student in the Department of Biomedical Engineering. Welcome Jake! <a href="https://www.vanderbilt.edu/vise/visepeople/jacob-watson/" target="_blank">[Link]</a></p>
-            </div>
-            <div class="news-item">
-                <div class="date">November 19, 2019</div>
-                <h3>DIIGI Lab publishes work on non-contact optical metrology</h3>
-                <p>Recent graduate Dr. El-Haddad publishes his work on non-contact characterization of compound optical elements in Scientific Reports. The method characterizes compound optical elements including curvatures, material and air-gap thicknesses, and glass types using a combination of reflectance confocal microscopy, low-coherence interferometry, and computational ray-tracing. Congrats Mohamed! <a href="https://www.nature.com/articles/s41598-019-53369-x" target="_blank">[Link]</a></p>
-            </div>
-            <div class="news-item">
-                <div class="date">July 3, 2019</div>
-                <h3>DIIGI Lab publishes work on handheld ophthalmic imaging technologies</h3>
-                <p>Graduate student Joe Malone publishes his work on handheld spectrally encoded coherence tomography and reflectometry (SECTR) in Neurophotonics. SECTR is a multimodality ophthalmic imaging technology that combines optical coherence tomography and spectrally encoded reflectance imaging to enable volumetric motion-correction and multi-volumetric mosaicking. Congrats Joe! <a href="https://www.spiedigitallibrary.org/journals/neurophotonics/volume-6/issue-04/041102/Handheld-spectrally-encoded-coherence-tomography-and-reflectometry-for-motion-corrected/10.1117/1.NPh.6.4.041102.full?SSO=1" target="_blank">[Link]</a></p>
-            </div>
-        </div>
-    </section>
+<section class="publications" id="publications">
+    <h2 class="section-title">Publications</h2>
+    <ul class="pub-list">
+        <li>Tang, E. M., El-Haddad, M. T., Patel, S. N. and Tao, Y. K., "Automated instrument-tracking for 4D video-rate imaging of ophthalmic surgical maneuvers," <em>Biomedical Optics Express</em> (2022). <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-13-3-1471&id=469501" target="_blank">[Link]</a></li>
+        <li>Rico-Jimenez, J. J., Hu, D., Tang, E. M., Oguz, I. and Tao, Y. K., "Real-time OCT image denoising using a self-fusion neural network," <em>Biomedical Optics Express</em> (2022). <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-13-3-1398&id=469423" target="_blank">[Link]</a></li>
+        <li>Tang, E. M. and Tao, Y. K., "Modeling and optimization of galvanometric point-scanning temporal dynamics," <em>Biomedical Optics Express</em> (2021). <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-12-11-6701&id=460181" target="_blank">[Link]</a></li>
+        <li>El-Haddad, M. T. and Tao, Y. K., "Non-contact characterization of compound optical elements using reflectance confocal microscopy, low-coherence interferometry, and computational ray-tracing," <em>Scientific Reports</em> (2019). <a href="https://www.nature.com/articles/s41598-019-53369-x" target="_blank">[Link]</a></li>
+        <li>Malone, J. D., El-Haddad, M. T., Yerramreddy, S. S., Oguz, I., and Tao, Y. K., "Handheld spectrally encoded coherence tomography and reflectometry for motion-corrected ophthalmic optical coherence tomography and optical coherence tomography angiography," <em>Neurophotonics</em> (2019). <a href="https://www.spiedigitallibrary.org/journals/neurophotonics/volume-6/issue-04/041102/Handheld-spectrally-encoded-coherence-tomography-and-reflectometry-for-motion-corrected/10.1117/1.NPh.6.4.041102.full?SSO=1" target="_blank">[Link]</a></li>
+        <li>Daniels, A. B., Froehler, M. T., et al., "Rabbit model of intra-arterial chemotherapy toxicity demonstrates retinopathy and vasculopathy related to drug and dose, not procedure or approach," <em>IOVS</em> (2019). <a href="https://iovs.arvojournals.org/article.aspx?articleid=2728304" target="_blank">[Link]</a></li>
+        <li>Lapierre-Landry, M., Connor, T. B., Carroll, J., Tao, Y. K., and Skala, M. C., "Photothermal optical coherence tomography of indocyanine green in ex vivo eyes," <em>Optics Letters</em> (2018). <a href="https://www.osapublishing.org/ol/abstract.cfm?uri=ol-43-11-2470" target="_blank">[Link]</a></li>
+        <li>Bozic, I., Li, X., and Tao, Y. K., "Quantitative biometry of zebrafish retinal vasculature using optical coherence tomographic angiography," <em>Biomedical Optics Express</em> (2018). <a href="https://www.osapublishing.org/boe/abstract.cfm?uri=boe-9-3-1244" target="_blank">[Link]</a></li>
+        <li>El-Haddad, M. T., Bozic, I., and Tao, Y. K., "Spectrally Encoded Coherence Tomography and Reflectometry (SECTR): simultaneous en face and cross-sectional imaging at 2 gigapixels-per-second," <em>J Biophotonics</em> (2017). <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jbio.201700268" target="_blank">[Link]</a></li>
+    </ul>
+</section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="section-title">
-            <h2>Contact</h2>
-            <div class="divider"></div>
-        </div>
-        <p class="contact-info">DIIGI Lab: Stevenson Center SC5842</p>
-        <form class="contact-form" action="#" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Message" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+<section class="news" id="news">
+    <h2 class="section-title">News</h2>
+    <div class="news-grid">
+        <article class="news-item">
+            <time>01/24/2022</time>
+            <h3>DIIGI Lab present research at SPIE Photonics West</h3>
+            <p>Jose and Eric presented their research at the SPIE Photonics West conference in San Francisco, CA. Congrats Jose and Eric!</p>
+        </article>
+        <article class="news-item">
+            <time>09/27/2021</time>
+            <h3>DIIGI Lab publishes work on optimization of galvanometric point-scanning temporal dynamics</h3>
+            <p>Graduate student Eric Tang publishes his work on modeling and optimization of galvanometric point-scanning temporal dynamics in Biomedical Optics Express. <a href="https://opg.optica.org/boe/fulltext.cfm?uri=boe-12-11-6701&id=460181" target="_blank">[Link]</a></p>
+        </article>
+        <article class="news-item">
+            <time>08/16/2021</time>
+            <h3>Incoming graduate student joins DIIGI Lab</h3>
+            <p>Rachel Hecht graduated the University of Colorado Boulder in 2021 with a B.S. in Electrical Engineering and B.M. in Bassoon Performance. Welcome Rachel! <a href="https://www.vanderbilt.edu/vise/visepeople/rachel-hecht/" target="_blank">[Link]</a></p>
+        </article>
+        <article class="news-item">
+            <time>06/22/2021</time>
+            <h3>Dr. Tao receives endowed SPIE Faculty Fellowship</h3>
+            <p>SPIE, the international society for optics and photonics, and Vanderbilt University announced the establishment of the SPIE Faculty Fellowship in Optics and Photonics. Prof. Kenny Tao has been selected as the recipient of the first gift. <a href="https://spie.org/news/spie-and-vanderbilt-university-announce-1-million-optical-engineering-faculty-fellowship?SSO=1" target="_blank">[Link]</a></p>
+        </article>
+        <article class="news-item">
+            <time>06/10/2021</time>
+            <h3>Incoming graduate student joins DIIGI Lab</h3>
+            <p>Jake Watson graduated the University of Evansville in 2021 with a B.S. in Electrical Engineering. Welcome Jake! <a href="https://www.vanderbilt.edu/vise/visepeople/jacob-watson/" target="_blank">[Link]</a></p>
+        </article>
+        <article class="news-item">
+            <time>11/19/2019</time>
+            <h3>DIIGI Lab publishes work on non-contact optical metrology</h3>
+            <p>Recent graduate Dr. El-Haddad publishes his work on non-contact characterization of compound optical elements in Scientific Reports. <a href="https://www.nature.com/articles/s41598-019-53369-x" target="_blank">[Link]</a></p>
+        </article>
+        <article class="news-item">
+            <time>07/03/2019</time>
+            <h3>DIIGI Lab publishes work on handheld ophthalmic imaging technologies</h3>
+            <p>Graduate student Joe Malone publishes his work on handheld spectrally encoded coherence tomography and reflectometry (SECTR) in Neurophotonics. <a href="https://www.spiedigitallibrary.org/journals/neurophotonics/volume-6/issue-04/041102/Handheld-spectrally-encoded-coherence-tomography-and-reflectometry-for-motion-corrected/10.1117/1.NPh.6.4.041102.full?SSO=1" target="_blank">[Link]</a></p>
+        </article>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>DIIGI Lab &copy; 2019. Department of Biomedical Engineering, Vanderbilt University.</p>
-    </footer>
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-location">DIIGI Lab: Stevenson Center SC5842</p>
+    <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Message" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</section>
 
-    <!-- JS -->
-    <script>
-        // Mobile nav toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+<footer>
+    <p>DIIGI Lab &copy; 2019</p>
+</footer>
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close nav on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
-
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('active');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+});
+</script>
 </body>
 </html>
